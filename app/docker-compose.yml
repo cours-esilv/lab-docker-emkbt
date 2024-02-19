@@ -6,3 +6,10 @@ services:
       - "8080:5000"
     environment:
       - CURRENT_ENVIRONMENT=production
+
+  frontend:
+    image: myappfront
+    ports:
+      - "8081:80"
+    environment:
+      - WS_BACK_URL=http://localhost:8080/
