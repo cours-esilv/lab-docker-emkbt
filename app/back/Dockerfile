@@ -1,11 +1,15 @@
-FROM python:3.9
+FROM python:latest
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY . /app
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+EXPOSE 5000
+
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV CURRENT_ENVIRONMENT=production
 
 CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
